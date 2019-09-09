@@ -1,1 +1,1 @@
-﻿Get-NsxFirewallSection "App - Pyramis" | New-NsxFirewallRule -name "SCE-DB to Pyramis-Int" -Source (get-vm sce-db) -Destination (Get-nsxsecuritygroup sg-pyramis-int)   -Action Allow
+﻿Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-Test to CPoint-App" -Source (get-vm cpoint-test) -Destination (Get-nsxsecuritygroup sg-cpoint-app)   -Action Allow

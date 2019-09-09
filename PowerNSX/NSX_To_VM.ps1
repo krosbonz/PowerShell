@@ -1,1 +1,1 @@
-﻿Get-NsxFirewallSection "App - Pyramis" | New-NsxFirewallRule -name "Pyramis-Int to CommDir" -Source (Get-nsxsecuritygroup sg-responder-db) -Destination (get-vm lgh-mt-cd)   -Action Allow
+﻿Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-App to Trace-Web" -Source (Get-nsxsecuritygroup sg-cpoint-app) -Destination (get-vm trace-web)   -Action Allow

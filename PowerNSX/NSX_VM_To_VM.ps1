@@ -1,0 +1,1 @@
+﻿Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-App to CPoint-App" -Source (Get-VM cpoint-app02) -Destination (Get-VM cpoint-app01)   -Action Allow

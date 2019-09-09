@@ -1,1 +1,1 @@
-﻿Get-NsxFirewallSection "App - responder" | New-NsxFirewallRule -name "Responder-GW to LLMulti" -Source (Get-NSXsecuritygroup sg-responder-gateway) -Destination (Get-NSXIPSet ip-llmulticast)   -Action Allow
+﻿Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-App to WSD" -Source (Get-NSXsecuritygroup sg-cpoint-app) -Destination (Get-NSXIPSet ip-llmulticast)   -Action Allow

@@ -1,2 +1,2 @@
 ﻿#$httpservice = Get-NsxService -Name APP_MSSQL_TCP -LocalOnly -Service $httpservice
-Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-App to SCE-App" -Source (Get-NsxSecurityGroup SG-cpoint-app) -Destination (Get-NsxSecurityGroup SG-sce-app)   -Action Allow 
+Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-App to ESig-App" -Source (Get-NsxSecurityGroup SG-cpoint-app) -Destination (Get-NsxSecurityGroup SG-esig-app)   -Action Allow 
