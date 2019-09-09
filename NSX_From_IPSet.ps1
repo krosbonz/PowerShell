@@ -1,0 +1,1 @@
+﻿Get-NsxFirewallSection "App - Trace" | New-NsxFirewallRule -name "Internet to Trace-Web" -Source (Get-NSXIPSet ip-internet) -Destination (Get-NSXsecuritygroup sg-Trace-Web)   -Action Allow 

@@ -1,0 +1,1 @@
+﻿Get-NsxFirewallSection "App - Pyramis" | New-NsxFirewallRule -name "SCE-DB to Pyramis-Int" -Source (get-vm sce-db) -Destination (Get-nsxsecuritygroup sg-pyramis-int)   -Action Allow

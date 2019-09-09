@@ -1,0 +1,1 @@
+﻿Get-NsxFirewallSection "App - IBEX" | New-NsxFirewallRule -name "IBEX-Web to LLMulti" -Source (Get-NSXIPSet ip-internet) -Destination (Get-NSXsecuritygroup sg-Trace-Web)   -Action Allow 

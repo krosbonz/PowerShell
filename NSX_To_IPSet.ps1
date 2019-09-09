@@ -1,0 +1,1 @@
+﻿Get-NsxFirewallSection "App - responder" | New-NsxFirewallRule -name "Responder-GW to LLMulti" -Source (Get-NSXsecuritygroup sg-responder-gateway) -Destination (Get-NSXIPSet ip-llmulticast)   -Action Allow
