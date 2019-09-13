@@ -1,1 +1,1 @@
-﻿Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-App to Trace-Web" -Source (Get-nsxsecuritygroup sg-cpoint-app) -Destination (get-vm trace-web)   -Action Allow
+﻿Get-NsxFirewallSection "App - CPACS" | New-NsxFirewallRule -name "CPACS-App to LGH-PRINT01" -Source (Get-nsxsecuritygroup sg-cpacs-app) -Destination (get-vm lgh-print01)   -Action Allow

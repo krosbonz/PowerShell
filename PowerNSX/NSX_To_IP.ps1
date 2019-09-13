@@ -1,1 +1,1 @@
-﻿Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-App to WSD" -Source (Get-nsxsecuritygroup sg-cpoint-app) -Destination "239.255.255.250" -Action Allow
+﻿Get-NsxFirewallSection "App - CPACS" | New-NsxFirewallRule -name "CPACS-App to IP SQL" -Source (Get-nsxsecuritygroup sg-cpacs-app) -Destination "172.16.2.172" -Action Allow

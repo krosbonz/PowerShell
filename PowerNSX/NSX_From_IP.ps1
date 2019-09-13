@@ -1,1 +1,1 @@
-﻿Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "Internet to CPoint-App" -Source "63.224.151.17" -Destination (Get-nsxsecuritygroup sg-cpoint-app) -Action Allow
+﻿Get-NsxFirewallSection "App - CPACS" | New-NsxFirewallRule -name "IP to CPACS-App" -Source "172.16.1.225" -Destination (Get-nsxsecuritygroup sg-cpacs-db) -Action Allow

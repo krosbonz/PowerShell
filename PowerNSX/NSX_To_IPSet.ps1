@@ -1,1 +1,1 @@
-﻿Get-NsxFirewallSection "App - Corepoint" | New-NsxFirewallRule -name "CPoint-App to WSD" -Source (Get-NSXsecuritygroup sg-cpoint-app) -Destination (Get-NSXIPSet ip-llmulticast)   -Action Allow
+﻿Get-NsxFirewallSection "App - SCE" | New-NsxFirewallRule -name "SCE-App to Printing" -Source (Get-NSXsecuritygroup sg-sce-app) -Destination (Get-NSXIPSet ip-printing)   -Action Allow

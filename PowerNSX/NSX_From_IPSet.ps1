@@ -1,1 +1,1 @@
-﻿Get-NsxFirewallSection "App - Trace" | New-NsxFirewallRule -name "Internet to Trace-Web" -Source (Get-NSXIPSet ip-internet) -Destination (Get-NSXsecuritygroup sg-Trace-Web)   -Action Allow 
+﻿Get-NsxFirewallSection "App - SCE" | New-NsxFirewallRule -name "Printing to SCE-App" -Source (Get-NSXIPSet ip-printing) -Destination (Get-NSXsecuritygroup sg-sce-app)   -Action Allow 
