@@ -1,0 +1,7 @@
+Curly brackets  = object
+Square brackets = array > collection of objects
+Nested objects = objects with sub objects i.e. employee with address information
+
+Parameters is something a user needs to provide
+
+Variables are hard coded in the template
