@@ -1,5 +1,5 @@
-Connect-Viserver "host-or-ip-entered-here" -user "userid-entered-here" -password "password-entered-here"
-$datastore = Get-Datastore “Datastore-name-entered-here”
+Connect-Viserver esx01-1 -user root
+$datastore = Get-Datastore "enc3-vc01-ctx-65"
 New-PSDrive -Location $datastore -Name ds -PSProvider VimDatastore -Root “\”
-Set-Location ds:\”folderpath-here”
+Set-Location ds:\lgh-pvs02
 Get-childitem | select name
