@@ -1,3 +1,5 @@
+Connect-VIServer -menu
+
 $dcenter = Read-Host -Prompt 'Name of Datacenter?'
 $cname = Read-Host -Prompt 'Name of Cluster?'
 
