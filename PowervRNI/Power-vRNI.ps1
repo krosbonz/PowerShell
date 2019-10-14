@@ -1,0 +1,1 @@
+$MyConnection = Connect-vRNIServer -Server lgh-vrni-plt -Username amhauck@lgh.local -Domain lgh.local
