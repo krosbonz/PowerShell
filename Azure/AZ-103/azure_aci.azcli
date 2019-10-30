@@ -1,0 +1,4 @@
+$resourcegroup = 'rgazuretest'
+$location = "eastus"
+
+#az group create -n $resourcegroup -l $location
