@@ -1,4 +1,12 @@
-$resourcegroup = 'rgazuretest'
-$location = "eastus"
+# $resourcegroup = 'rgazuretest'
+# $location = "eastus"
 
 #az group create -n $resourcegroup -l $location
+
+
+az storage account create \
+    --name clddevstrg \
+    --resource-group cld-dev-rg \
+    --location eastus \
+    --sku Standar_LRS \
+    --kind StorageV2

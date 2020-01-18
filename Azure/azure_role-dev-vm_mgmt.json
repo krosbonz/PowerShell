@@ -1,0 +1,24 @@
+{
+    "Name":  "LGH - Azure VM Mgmnt",
+    "IsCustom":  true,
+    "Description":  "Allows Start/Stop/Restart/Deallocate VM Permissions. Allows Read Storage Account Keys",
+    "Actions":  [
+                    "Microsoft.Compute/virtualMachines/read",
+                    "Microsoft.Compute/virtualMachines/start/action",
+                    "Microsoft.Compute/virtualMachines/restart/action",
+                    "Microsoft.Compute/virtualMachines/powerOff/action",
+                    "Microsoft.Compute/virtualMachines/deallocate/action"
+                ],
+    "NotActions":  [
+
+                   ],
+    "DataActions":  [
+
+                    ],
+    "NotDataActions":  [
+
+                       ],
+    "AssignableScopes":  [
+                             "/subscriptions/87c7e1cc-ed7e-40ae-a4ce-fdabcf504699"
+                         ]
+}
