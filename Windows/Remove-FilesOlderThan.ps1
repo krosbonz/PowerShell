@@ -5,4 +5,3 @@ Foreach ($ItemsGroup in $Items) {
     $SortedFiles = $ItemsGroup.Group | sort LastWriteTime -Descending
     $SortedFiles | Select-Object -Skip 2 | % { Remove-Item $_.FullName }
 }
-write
