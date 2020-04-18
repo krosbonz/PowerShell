@@ -1,15 +1,24 @@
+# Supress breaking warning alerts
+Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"
 
-# New-AzResourceGroup rgdevdocker "East US"
+# Set the current active subscription for the session
+$context = Get-AzSubscription -AccountId fb0a14a6-d68a-4594-94d9-8950a5a7030e
+Set-AzContext $context
 
-# New-AzStorageAccount -ResourceGroupName rgdevdocker -Name sgdevdocker -Location 'East US' -SkuName Standard_LRS
+New-AzResourceGroup mytechrg "East US"
 
-#Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"
+New-AzStorageAccount -ResourceGroupName mytechrg -Name mytechsg -Location 'East US' -SkuName Standard_LRS
 
-$newSubnet = New-AzVirtualNetworkSubnetConfig -Name "snetdevdocker" -AddressPrefix "10.26.4.0/24" 
-New-AzVirtualNetwork -Name vnetdevdocker -ResourceGroupName rgdevdocker -Location "East US" -AddressPrefix "10.26.0.0/16" -Subnet $newSubnet
+New-AzVirtualNetwork -Name mytechvnet1 -ResourceGroupName mytechrg -Location "East US" -AddressPrefix "10.10.0.0/16" -Subnet $newSubnet
+$newSubnet = add-AzVirtualNetworkSubnetConfig -Name "mytechsnet1" -AddressPrefix "10.10.1.0/24"
 
-Connect-Azaccount
+New-AzNetworkSecurityGroup -Name "mytechnsg" -ResourceGroupName "mytechrg" -Location "East US"
 
-Set-AzContext -Subscription 87c7e1cc-ed7e-40ae-a4ce-fdabcf504699
 
-New-AzRoleDefinition –InputFile C:\Users\armank\Desktop\export-role.json
+# Add subnet to virtual network
+$snetname = 
+$addprefix = 
+$virtnet = Get-AzVirtualNetwork -Name 'mytechvnet1' -ResourceGroupName 'mytechrg' `
+add-AzVirtualNetworkSubnetConfig -Name $snetname -AddressPrefix $addprefix -VirtualNetwork $virtnet `
+$virtnet | Set-AzVirtualNetwork
+
