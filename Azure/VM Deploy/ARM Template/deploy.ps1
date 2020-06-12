@@ -15,6 +15,8 @@
     Optional, path to the template file. Defaults to template.json.
  .PARAMETER parametersFilePath
     Optional, path to the parameters file. Defaults to parameters.json. If file is not found, will prompt for parameter values based on template.
+ .PARAMETER RunScript
+    .\deploy.ps1 -subscriptionId fb0a14a6-d68a-4594-94d9-8950a5a7030e -resourceGroupName mytechrg -deploymentName aztestvmdeploy
 #>
 
 param(
@@ -61,7 +63,7 @@ $ErrorActionPreference = "Stop"
 
 # sign in
 Write-Host "Logging in...";
-Login-azAccount;
+# Login-azAccount;
 
 # select subscription
 Write-Host "Selecting subscription '$subscriptionId'";

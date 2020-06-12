@@ -1,9 +1,9 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters_win2k16.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters_win2k16_availset.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualMachines_win2k16_vm_name": {
-            "value": "win2k16-vm3"
+            "value": "win2k16-vm-2"
         },
         "admin_user_name": {
             "value": "godwire"
@@ -17,10 +17,10 @@
             }
         },
         "networkInterfaces_win2k16_vm31_name": {
-            "value": "win2k16-vm3"
+            "value": "win2k16-vm-2-nic"
         },
         "publicIPAddresses_win2k16_vm_ip_name": {
-            "value": "win2k16-vm3-ip"
+            "value": "win2k16-vm-2-ip"
         }
     }
 }

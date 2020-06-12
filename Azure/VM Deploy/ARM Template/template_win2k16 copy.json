@@ -194,7 +194,7 @@
             ],
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "Standard_D2s_v3"
+                    "vmSize": "Standard_B1s"
                 },
                 "storageProfile": {
                     "imageReference": {
@@ -224,8 +224,8 @@
                         "enableAutomaticUpdates": true
                     },
                     "secrets": [],
-                    "allowExtensionOperations": true
-                    // "requireGuestProvisionSignal": false
+                    "allowExtensionOperations": true,
+                    // "requireGuestProvisionSignal": true
                 },
                 "networkProfile": {
                     "networkInterfaces": [

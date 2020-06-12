@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters_win2k16.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_win2k16_vm_name": {
+            "value": "win2k16-vm-1"
+        },
+        "admin_user_name": {
+            "value": "godwire"
+        },
+        "admin_password": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/fb0a14a6-d68a-4594-94d9-8950a5a7030e/resourceGroups/mytechrg/providers/Microsoft.KeyVault/vaults/mytechkeyvault"
+                },
+                "secretName": "keyname"
+            }
+        },
+        "networkInterfaces_win2k16_vm31_name": {
+            "value": "win2k16-vm-1"
+        },
+        "publicIPAddresses_win2k16_vm_ip_name": {
+            "value": "win2k16-vm-1-ip"
+        }
+    }
+}

@@ -1,0 +1,94 @@
+Parameter Sets
+
+NAME
+    Get-Service
+
+SYNTAX
+    Get-Service [[-Name] <string[]>] [-DependentServices] [-RequiredServices] [-Include <string[]>] [-Exclude <string[]>] [<CommonParameters>]
+
+    Get-Service -DisplayName <string[]> [-DependentServices] [-RequiredServices] [-Include <string[]>] [-Exclude <string[]>] [<CommonParameters>]
+
+    Get-Service [-DependentServices] [-RequiredServices] [-Include <string[]>] [-Exclude <string[]>] [-InputObject <ServiceController[]>] [<CommonParameters>]
+
+
+What you’re looking at are three different parameter sets, each of which represents a slightly different way to use this cmdlet. These parameter sets can be a big source of confusion, so we’ll provide a simple rule to remember: When you’re running the command, you can only choose parameters from a single parameter set to use together. In this case, that means you couldn’t use both –Name and –InputObject at the same time, because they appear in different parameter sets. You can mix and match parameters from one set, but you can’t mix and match parameters from multiple sets.
+
+NOTE: "-ShowWindow" will open help in separate window
+
+Syntax of Help Output
+
+NAME
+   Get-WmiObject
+
+SYNTAX
+    Get-WmiObject [-Class] <String> [[-Property] <String[]>] [-Amended]
+    [-AsJob] [-Authentication {Default | None | Connect | Call | Packet | PacketIntegrity | PacketPrivacy | Unchanged}] [-Authority <String>]
+    [-ComputerName <String[]>] [-Credential <PSCredential>]
+    [-DirectRead] [-EnableAllPrivileges] [-Filter <String>]
+    [-Impersonation {Default | Anonymous | Identify | Impersonate |
+    Delegate}]  [-Locale <String>] [-Namespace <String>]
+    [-ThrottleLimit <Int32>]  [<CommonParameters>]
+
+If you know the meaning of all the punctuation, you can extract quite a bit of information from this concise display. Note that the meaning of the punctuation within the help file isn’t the same as when these same symbols are used elsewhere in the shell. Here’s what we know:
+
+	• We know that the –Class parameter is positional, because the parameter name (but not its data type <String>) is contained in square brackets. Positional means that you don’t have to type –Class, provided you put the String value in the first position, because –Class is listed first in this help file. In other words you can type Get-WmiObject Win32_ComputerSystem instead of Get-WmiObject -Class Win32_ComputerSystem. Positional parameters are fine to use at the command line, but we recommend you don’t use them in your scripts.
+
+	• We know that the –Class parameter is mandatory, because its name and data type aren’t both contained in square brackets.
+
+	• We know that the –Property parameter is entirely optional for this command. That’s because the entire parameter, both its name and data type, is contained in square brackets: [[-Property]<String[]>].
+
+	• We know that the –Amended parameter doesn’t accept a value—it’s a switch. This means you either provide the parameter or not, but if you do, it doesn’t need a value.
+
+	• We know that the –Class parameter accepts a String value, meaning a string of characters. If the string contains a space, tab, or other whitespace, it must be enclosed within single or double quotes.
+
+	• We know that the –Property parameter accepts one or more strings, because its value is shown with two square brackets jammed together: <String[]>. That’s a PowerShell indication for an array. You could provide those multiple values as a comma-separated list.
+
+	• We know that the –Authentication and –Impersonation parameters are limited to a discrete set of values because those values are supplied in curly braces {}.
+
+
+
+Extended Help for Command Parameters
+
+Get-Help Get-EventLog -Parameter EntryType
+
+-EntryType<string[]>
+    Gets only events with the specified entry type. Valid values are Error,
+    Information, FailureAudit, SuccessAudit, and Warning. The default is all
+    events.
+    Required?                    false
+    Position?                    named
+    Default value                All events
+    Accept pipeline input?       false
+    Accept wildcard characters?  false
+
+
+
+Common Parameters
+
+You’ll notice that every command’s help file references <CommonParameters> at the end of each parameter set. These are a set of parameters that are automatically added by PowerShell to every command. You can read about them in an about file:
+
+help about_common*
+TOPIC
+about_CommonParameters
+SHORT DESCRIPTION
+    Describes the parameters that can be used with any cmdlet.
+LONG DESCRIPTION
+    The common parameters are a set of cmdlet parameters that you can
+    use with any cmdlet. They are implemented by Windows PowerShell, not
+    by the cmdlet developer, and they are automatically available to any
+    cmdlet.
+    You can use the common parameters with any cmdlet, but they might
+    not have an effect on all cmdlets. For example, if a cmdlet does not
+    generate any verbose output, using the Verbose common parameter
+    has no effect.
+
+The common parameters are:
+	• Debug
+	• ErrorAction
+	• ErrorVariable
+	• OutVariable
+	• OutBuffer
+	• PipelineVariable
+	• Verbose
+	• WarningAction
+	• WarningVariable

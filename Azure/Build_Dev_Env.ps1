@@ -1,6 +1,15 @@
 # Supress breaking warning alerts
 Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"
 
+# Connect to Azure
+Connect-AzAccount
+
+
+# TennantID
+b7f36ff3-a750-4735-8a86-a9a25ed584a9
+# SubscriptionID
+fb0a14a6-d68a-4594-94d9-8950a5a7030e
+
 # Set the current active subscription for the session
 $context = Get-AzSubscription -AccountId fb0a14a6-d68a-4594-94d9-8950a5a7030e
 Set-AzContext $context
