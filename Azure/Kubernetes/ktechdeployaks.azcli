@@ -1,0 +1,19 @@
+$region = "eastus"
+$resgrp = "kubetech"
+$snet = "ktechsnet1"
+$vnet = "ktechvnet1"
+
+az aks create \
+    --resource-group $resgrp \
+    --name ktechclst \
+    --vm-set-type virtualmachinescalesets \
+    --node-count 2 \
+    --generate-ssh-keys \
+    --kubernetes-version 1.18.6 \
+    --load-balancer-sku basic
+
+
+# Deploy cluster
+az aks create --resource-group $resgrp --name ktechclst --vm-set-type virtualmachinescalesets --node-count 2 --generate-ssh-keys --kubernetes-version 1.18.6 --load-balancer-sku 
+# Get credentials
+az aks get-credentials --resource-group $resgrp --name ktechclst
