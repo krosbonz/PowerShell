@@ -15,3 +15,6 @@ $snetconfig = Add-AzVirtualNetworkSubnetConfig `
 -AddressPrefix 192.168.1.0/24
 
 $vnetconfig | Set-AzVirtualNetwork 
+
+
+

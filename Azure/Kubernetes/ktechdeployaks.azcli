@@ -1,19 +1,80 @@
-$region = "eastus"
-$resgrp = "kubetech"
-$snet = "ktechsnet1"
-$vnet = "ktechvnet1"
-
-az aks create \
-    --resource-group $resgrp \
-    --name ktechclst \
-    --vm-set-type virtualmachinescalesets \
-    --node-count 2 \
-    --generate-ssh-keys \
-    --kubernetes-version 1.18.6 \
-    --load-balancer-sku basic
 
 
-# Deploy cluster
-az aks create --resource-group $resgrp --name ktechclst --vm-set-type virtualmachinescalesets --node-count 2 --generate-ssh-keys --kubernetes-version 1.18.6 --load-balancer-sku 
-# Get credentials
-az aks get-credentials --resource-group $resgrp --name ktechclst
+
+
+# Kubernetes versions available
+az aks get-versions --location eastus --output table
+
+# Resources
+$location = 'eastus'
+$resgrp = 'kubetech'
+$region = 'eastus'
+
+# Create Resource Group
+$group=(az group create --name $resgrp --location $location --verbose)
+
+# Pre-create Service Principal
+$cluster = $resgrp+'clstr'
+$spname = $resgrp+'clstr'+'sp'
+$spid = $(az ad sp create-for-rbac --name $spname --skip-assignment --query appId )
+$spsecret = $(az ad sp credential reset --name $spname --query "password")
+
+# Create AKS Cluster
+az aks create `
+    --resource-group $resgrp `
+    --location $region `
+    --name $cluster `
+    --service-principal $spid `
+    --client-secret $spsecret `
+    --node-count 1 `
+    --node-vm-size Standard_B2s `
+    --enable-aad `
+    --generate-ssh-keys `
+    --kubernetes-version 1.18.4 `
+    --verbose
+
+# Once configured connect to cluster via kubectl. The first step 
+# is to configure kubectl to talk to a remote environment
+az aks get-credentials --resource-group $resgrp --name $cluster
+# The command creates a config file and will use that file going forward. This is 
+# the path; "Merged "kubetechclstr" as current context in /home/hauckm/.kube/config"
+
+kubectl get services --namespace=kube-system
+
+
+# To remove RG and SP for AKS cluster;
+az group delete -n $resgrp
+# Delete service principle account used in cluster
+ az ad sp delete --id $(az aks show -g $resgrp -n $cluster --query servicePrincipalProfile.clientId -o tsv)
+
+
+# Kubernetes RBAC and Azure AD
+
+# Get Resource ID of cluster
+$aks_id = (az aks show `
+    --resource-group $resgrp `
+    --name $cluster `
+    --query id -o tsv)
+
+# Create Dev group in AD
+$aksdev_id = (az ad group create --display-name AKS_Dev --mail-nickname aks_dev --query objectId -o tsv)
+# Create a role assignment to allow the Dev group access to run kubectl
+az role assignment create `
+  --assignee $aksdev_id `
+  --role "Azure Kubernetes Service Cluster User Role" `
+  --scope $aks_id
+
+# Create Support Engineer group in AD
+$akseng_id = (az ad group create --display-name AKS_Eng --mail-nickname aks_eng --query objectId -o tsv)
+# Create role assignment to allow the Eng group access to run kubectl
+az role assignment create `
+  --assignee $akseng_id `
+  --role "Azure Kubernetes Service Cluster User Role" `
+  --scope $aks_id
+
+# The Azure AD groups and users are now created. 
+# Azure role assignments were created for the group members to connect to an AKS cluster as a regular user. 
+# The next step is to configure the AKS cluster to allow these different groups access to specific resources.
+
+# Step one is to get the cluster admin creds
+az aks get-credentials --resource-group $resgrp --name $cluster --admin
